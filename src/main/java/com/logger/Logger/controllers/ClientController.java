@@ -1,13 +1,16 @@
 package com.logger.Logger.controllers;
 
 import com.logger.Logger.model.Client;
-import com.logger.Logger.repository.ClientRepository;
-import com.logger.Logger.repository.SqlClientRepository;
+import com.logger.Logger.repository.Interfaces.ClientRepository;
+
+import com.logger.Logger.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,30 +18,23 @@ import java.util.UUID;
 @RestController
 public class ClientController {
 
-    private ClientRepository clientRepository;
-
+    private ClientService clientService;
     @Autowired
-    public ClientController(ClientRepository clientRepository){
-        this.clientRepository = clientRepository;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
     }
 
-
-    @GetMapping("/api/client/all")
-    public List<Client> findAll(){
-        return clientRepository.findAll();
+    @GetMapping("/api/clients/all")
+    public List<Client> findAllClients() {
+        return clientService.getAllClients();
     }
 
+    @PostMapping("/api/clients/register")
+    public ResponseEntity<Void> registerClient(@RequestBody Client client){
+        return clientService.insertClient(client);
+    }
 
-//    @GetMapping("/api/clients/all")
-//    public List<Client> getAllClients(){
-//        return sqlClientRepository.getAllClients();
-//    }
-
-
-
-
-
-
+    // @PostMapping("/api/clients/login")
 
 
 }

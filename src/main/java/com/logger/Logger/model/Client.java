@@ -1,38 +1,32 @@
 package com.logger.Logger.model;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
+
 
 @Entity
 @Table(name = "Clients")
 public class Client {
     @Id
-    @JsonProperty("id")
-    private UUID id;
-    @JsonProperty("username")
-    private String username;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("password")
-    private String password;
+    public UUID id;
+    public String username;
+    public String password;
+    public String email;
 
-    public Client() {
-    }
 
-    public Client(UUID id, String username, String email, String password) {
+    public Client(UUID id, String username, String password, String email) {
         this.id = id;
         this.username = username;
-        this.email = email;
         this.password = password;
+        this.email = email;
     }
 
-    public Client(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public Client(){
+
     }
-    @GeneratedValue(strategy= GenerationType.AUTO)
     public UUID getId() {
         return id;
     }
@@ -49,14 +43,6 @@ public class Client {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -65,15 +51,21 @@ public class Client {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
-                "username='" + username + '\'' +
-                ", email='" + email + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
-
-
-
 }
