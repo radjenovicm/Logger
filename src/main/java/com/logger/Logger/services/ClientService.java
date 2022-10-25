@@ -24,7 +24,7 @@ public class ClientService {
 //            )
 //    );
 //    RuleResult result = passwordValidator.validate(new PasswordData());
-    EmailValidator emailValidator = EmailValidator.getInstance();
+
     private final ClientRepository clientRepository;
 
     @Autowired
@@ -36,36 +36,9 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public ResponseEntity<Void> insertClient(Client client) {
-        if (clientRepository.existsByUsername(client.getUsername()) != 0 || clientRepository.existsByEmail(client.getEmail()) != 0) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-        }
-        if (!(emailValidator.isValid(client.getEmail())) || client.getUsername().length() < 3 || client.getPassword().length() < 8) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-//        if(client.getPassword().length() > 8){
-//            for(int i = 0; i< client.getPassword().length();i++){
-//                if(Character.isUpperCase(client.getPassword().charAt(i)) && Character.isDigit(client.getPassword().charAt(i))){
-//
-//                }
 
 
-        client.setId(UUID.randomUUID());
-        clientRepository.save(new Client(client.getId(), client.getUsername(), client.getPassword(), client.getEmail()));
-        getAllClients().add(client);
-        return ResponseEntity.status(HttpStatus.CREATED).
-                body(null);
-    }
 
-//RequestEntity for login 200 - ok
-//                        400 - bad request
-//
-//    public  ResponseEntity<> login(String username, String password){
-//        if(clientRepository.existsByUsername(username)>=1){
-//
-//        }
-//        clientRepository.
-//    }
 
 
 }

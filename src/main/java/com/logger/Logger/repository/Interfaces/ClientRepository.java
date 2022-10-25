@@ -22,4 +22,8 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
 
     @Query(value = "SELECT COUNT(*) FROM CLIENTS WHERE email=:email", nativeQuery = true)
     Integer existsByEmail(@Param("email") String email);
+
+    @Query(value = "SELECT COUNT(*) FROM CLIENTS WHERE password=:password", nativeQuery = true)
+    Integer ExistByPassword(@Param("password") String password);
+
 }
