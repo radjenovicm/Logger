@@ -1,5 +1,6 @@
 package com.logger.Logger.services;
 
+import com.logger.Logger.Login;
 import com.logger.Logger.model.Client;
 import com.logger.Logger.repository.Interfaces.ClientRepository;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -36,7 +37,10 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-
+//    public ResponseEntity<?> login(Login request) {
+//        return loginController.loginClient(new Login(request.getAccount(),
+//                request.getPassword()));
+//    }
 
 
 

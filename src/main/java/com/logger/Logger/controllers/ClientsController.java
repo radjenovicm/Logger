@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
-public class ClientController {
+public class ClientsController {
     EmailValidator emailValidator = EmailValidator.getInstance();
     private ClientService clientService;
     private ClientRepository clientRepository;
 
     @Autowired
-    public ClientController(ClientService clientService, ClientRepository clientRepository) {
+    public ClientsController(ClientService clientService, ClientRepository clientRepository) {
         this.clientService = clientService;
         this.clientRepository = clientRepository;
     }
@@ -53,7 +54,14 @@ public class ClientController {
 
 
 
-
+    @PostMapping("/api/clients/login")
+    public ResponseEntity<?> loginClient(@RequestBody Client client){
+        if(clientRepository.existsByEmail(client.getEmail()) == 0 && clientRepository.existsByPassword(client.getPassword()) == 0){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        String token = String.valueOf(UUID.randomUUID());
+        return ResponseEntity.status(HttpStatus.OK).body("Token: " + token);
+    }
 
 
 

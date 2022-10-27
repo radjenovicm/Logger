@@ -17,6 +17,12 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
     List<Client> findAll();
 
 
+
+
+
+
+
+
     @Query(value = "SELECT COUNT(*) FROM CLIENTS WHERE username=:username", nativeQuery = true)
     Integer existsByUsername(@Param("username") String username);
 
@@ -24,6 +30,9 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
     Integer existsByEmail(@Param("email") String email);
 
     @Query(value = "SELECT COUNT(*) FROM CLIENTS WHERE password=:password", nativeQuery = true)
-    Integer ExistByPassword(@Param("password") String password);
+    Integer existsByPassword(@Param("password") String password);
+
+
+
 
 }
