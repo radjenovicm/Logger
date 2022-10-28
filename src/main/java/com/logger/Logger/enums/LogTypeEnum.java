@@ -8,21 +8,25 @@ public enum LogTypeEnum {
     WARNING(1),
     ERROR(2);
 
-    private final int typeNum;
+    private final int value;
     private static final Map<Integer, LogTypeEnum> BY_NUMBER = new HashMap<>();
 
     static {
         for(LogTypeEnum e : values()) {
-            BY_NUMBER.put(e.typeNum, e);
+            BY_NUMBER.put(e.value, e);
         }
     }
 
     LogTypeEnum(int typeNum){
-        this.typeNum = typeNum;
+        this.value = typeNum;
     }
 
     public static LogTypeEnum valueOfInt(int i){
         return BY_NUMBER.get(i);
+    }
+
+    public int  getValue() {
+        return value;
     }
 
 }

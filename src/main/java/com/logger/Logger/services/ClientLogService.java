@@ -19,4 +19,8 @@ public class ClientLogService {
         this.clientRepository=clientRepository;
         this.clientService=clientService;
     }
+
+
+
+
 }

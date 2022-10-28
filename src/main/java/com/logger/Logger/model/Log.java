@@ -5,84 +5,30 @@ package com.logger.Logger.model;
 // createdDate
 
 
+import com.logger.Logger.enums.LogTypeEnum;
+import lombok.*;
+
+import javax.net.ssl.SSLSession;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
-
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
+@Entity
+@Table(name = "ClientLogs")
 public class Log {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String token;
     private String message;
-    private Enum logType;
+    private LogTypeEnum logType;
     private LocalDate createdDate;
 
-    public Log(){
 
-    }
 
-    public Log(UUID id, String token, String message, Enum logType, LocalDate createdDate) {
-        this.id = id;
-        this.token = token;
-        this.message = message;
-        this.logType = logType;
-        this.createdDate = createdDate;
-    }
-
-    public Log(String token, String message, Enum logType, LocalDate createdDate) {
-        this.token = token;
-        this.message = message;
-        this.logType = logType;
-        this.createdDate = createdDate;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Enum getLogType() {
-        return logType;
-    }
-
-    public void setLogType(Enum logType) {
-        this.logType = logType;
-    }
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Log{" +
-                "id=" + id +
-                ", token='" + token + '\'' +
-                ", message='" + message + '\'' +
-                ", logType=" + logType +
-                ", createdDate=" + createdDate +
-                '}';
-    }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -15,11 +16,6 @@ import java.util.UUID;
 public interface ClientRepository extends JpaRepository<Client, UUID> {
 
     List<Client> findAll();
-
-
-
-
-
 
 
 
@@ -32,7 +28,8 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
     @Query(value = "SELECT COUNT(*) FROM CLIENTS WHERE password=:password", nativeQuery = true)
     Integer existsByPassword(@Param("password") String password);
 
-
+    @Query(value = "SELECT COUNT(*) FROM Users WHERE id=:id", nativeQuery = true)
+    Integer findId(@Param("id") UUID id);
 
 
 }
