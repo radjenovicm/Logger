@@ -37,7 +37,7 @@ public class LogsController {
 
     EmailValidator emailValidator = EmailValidator.getInstance();
 
-    @PostMapping("/api/logs/create")
+    @PostMapping("create")
     public ResponseEntity<Void> createLog(@RequestHeader("Id") UUID id, @RequestBody Log log) {
         if (log.getLogType().getValue() != ERROR.getValue() &&
                 log.getLogType().getValue() != WARNING.getValue() &&
@@ -52,7 +52,7 @@ public class LogsController {
         logRepository.save(log);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
-    @GetMapping("/api/logs/search")
+    @GetMapping("search")
     public ResponseEntity<List> searchLogs(@RequestHeader("Id") UUID id,
                                            @RequestParam(value = "dateFrom", required = false) Optional<String> dateFrom,
                                            @RequestParam(value = "dateTo", required = false) Optional<String> dateTo,

@@ -4,9 +4,7 @@ package com.logger.Logger.model;
 import com.logger.Logger.enums.ClientRoleEnum;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 @Setter
 @Getter
@@ -18,13 +16,16 @@ import java.util.UUID;
 @Table(name = "Clients")
 public class Client {
     @Id
+    @GeneratedValue(generator = "UUIDGenerator")
     private UUID id;
     private String username;
     private String password;
     private String email;
 
-//    private ClientRoleEnum role;
-//    private Long logCount;
+
+    @Enumerated(EnumType.STRING)
+    private ClientRoleEnum role;
+    private Integer logCount;
 
 
 

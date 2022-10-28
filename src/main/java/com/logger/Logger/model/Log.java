@@ -26,8 +26,10 @@ public class Log {
     private UUID id;
     private String token;
     private String message;
+    @Enumerated(EnumType.ORDINAL)
     private LogTypeEnum logType;
     private LocalDate createdDate;
+
 
 
 
